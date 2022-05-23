@@ -74,6 +74,9 @@ log_format main escape=json     '{ "timestamp": $msec, "request_id": "$request_i
     支持多文件合并统计
 
 
+## Usage
+
+`nginxLogParse  -path=/data/logs/default_https.log --printRemoteAddCount=true -tail=true`
 
 
 
