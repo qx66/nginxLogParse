@@ -6,6 +6,9 @@ nginxLogParse 是一个 nginx 日志分析工具，用于日常 nginx 日志文�
 
 在使用 json 格式带来的问题就是，不利于 shell 脚本截取解析
 
+该工具是个人简单实现的玩具工具，有需求的同学建议使用 "https://github.com/hpcloud/tail" 包
+
+
 ```
 log_format main escape=json     '{ "timestamp": $msec, "request_id": "$request_id", "hostname": "$hostname",'
                 '"http_x_forwarded_for": "$http_x_forwarded_for", "remote_addr": "$remote_addr",'
@@ -17,6 +20,7 @@ log_format main escape=json     '{ "timestamp": $msec, "request_id": "$request_i
                 '"ssl_session_id": "$ssl_session_id", "ssl_cipher": "$ssl_cipher", "ssl_session_reused": "$ssl_session_reused",'
                 '"http_user_agent": "$http_user_agent", "http_referer": "$http_referer" }';
 ```
+
  
 # feature
 
@@ -32,8 +36,11 @@ log_format main escape=json     '{ "timestamp": $msec, "request_id": "$request_i
         5. 某段时间请求量接口排名 (使用 "?" 切割 $request_uri)
         
     实时:
-        1. 过滤 request_time >= x 秒的请求
-        2. 
+        1. 
+        2. 格式化输出:
+            http_code: xxx
+            request_time >= x
+            
         
         
 实时统计需求:
