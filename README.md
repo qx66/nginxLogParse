@@ -8,6 +8,7 @@ nginxLogParse 是一个 nginx 日志分析工具，用于日常 nginx 日志文�
 
 该工具是个人简单实现的玩具工具，有需求的同学建议使用 "https://github.com/hpcloud/tail" 包
 
+## Log Format
 
 ```
 log_format main escape=json     '{ "timestamp": $msec, "request_id": "$request_id", "hostname": "$hostname",'
@@ -22,7 +23,7 @@ log_format main escape=json     '{ "timestamp": $msec, "request_id": "$request_i
 ```
 
  
-# feature
+## feature
 
 常用统计需求:
 
