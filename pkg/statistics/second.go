@@ -3,7 +3,6 @@ package statistics
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/startopsz/rule/pkg/os/filesystem"
 	"io"
 	"log"
 	"os"
@@ -15,12 +14,12 @@ import (
 )
 
 type LogFormat struct {
-	Timestamp            float64         `json:"timestamp"`
-	RemoteAddr           string          `json:"remote_addr"`
-	BodyBytesSent        int64           `json:"body_bytes_sent"`
-	Status               string          `json:"status"`
-	RequestTime          float64         `json:"request_time"`
-	UpstreamResponseTime string          `json:"upstream_response_time"`
+	Timestamp            float64 `json:"timestamp"`
+	RemoteAddr           string  `json:"remote_addr"`
+	BodyBytesSent        int64   `json:"body_bytes_sent"`
+	Status               string  `json:"status"`
+	RequestTime          float64 `json:"request_time"`
+	UpstreamResponseTime string  `json:"upstream_response_time"`
 }
 
 type SecondReport struct {
@@ -31,23 +30,18 @@ type SecondReport struct {
 	TotalBodyByteSize int64
 }
 
-
 func SecondStatistics(path string, tail bool, printRemoteAddrCount bool) {
 	
-	if !filesystem.IsFile(path) {
-		log.Fatal("path is not file.")
-		return
-	}
-	
 	buf := make([]byte, 1024)
+	//
 	f, err := os.Open(path)
 	if err != nil {
 		log.Fatal("open path err:", err)
 		return
 	}
-	
 	defer f.Close()
 	
+	//
 	var last string
 	var lastTimestamp int64
 	var logFormat LogFormat
@@ -60,14 +54,14 @@ func SecondStatistics(path string, tail bool, printRemoteAddrCount bool) {
 		ff, err := f.Stat()
 		if err == nil {
 			fsize := ff.Size()
-			_, _ =f.Seek(fsize, 0)
+			_, _ = f.Seek(fsize, 0)
 		}
 	}
-
-	//_, _ = f.ReadAt(buf, fsize)
 	
+	// 循环读取
 	for {
 		n, err := f.Read(buf)
+		
 		// 实现 tail
 		if n == 0 && err == io.EOF && tail == true {
 			continue
@@ -88,6 +82,7 @@ func SecondStatistics(path string, tail bool, printRemoteAddrCount bool) {
 		newReadString := last + readString
 		
 		readStrings := strings.Split(newReadString, "\n")
+		
 		// 读取每一行信息
 		for _, content := range readStrings[:len(readStrings)-1] {
 			err := json.Unmarshal([]byte(content), &logFormat)

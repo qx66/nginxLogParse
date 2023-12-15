@@ -54,15 +54,15 @@ log_format main escape=json     '{ "timestamp": $msec, "request_id": "$request_i
         AvgResponseTime: 0.000000, 
         RemoteAddrCount: 4.
     
-    --printRemoteAddCount=true
+    --printRemoteAddCount
     
         remote_addr: x.x.x.x,	count: n.
 
-    -tail=true
+    -tail
         
         从最后一个 byte 开始 tail
         
-    --printHttpCodeCount=true
+    --printHttpCodeCount
         200: n, 301: y, 502: z
 
     --printUpstreamDistribute=true
@@ -77,8 +77,12 @@ log_format main escape=json     '{ "timestamp": $msec, "request_id": "$request_i
 
 ## Usage
 
-`nginxLogParse  -path=/data/logs/default_https.log --printRemoteAddCount=true -tail=true`
-
+```shell
+./nginxLogParse 
+    -path=/data/logs/default_https.log 
+    -printRemoteAddCount 
+    -tail
+```
 
 
 

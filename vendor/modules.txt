@@ -1,10 +1,17 @@
-# github.com/fsnotify/fsnotify v1.4.9
-## explicit
-github.com/fsnotify/fsnotify
 # github.com/startopsz/rule v0.0.0-20220519060320-bc685343185c
 ## explicit
 github.com/startopsz/rule/pkg/os/filesystem
 github.com/startopsz/rule/pkg/timestamp
-# golang.org/x/sys v0.0.0-20210816074244-15123e1e1f71
-golang.org/x/sys/internal/unsafeheader
-golang.org/x/sys/unix
+# go.uber.org/multierr v1.10.0
+go.uber.org/multierr
+# go.uber.org/zap v1.26.0
+## explicit
+go.uber.org/zap
+go.uber.org/zap/buffer
+go.uber.org/zap/internal
+go.uber.org/zap/internal/bufferpool
+go.uber.org/zap/internal/color
+go.uber.org/zap/internal/exit
+go.uber.org/zap/internal/pool
+go.uber.org/zap/internal/stacktrace
+go.uber.org/zap/zapcore
